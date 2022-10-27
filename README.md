@@ -36,7 +36,7 @@ WISE akan dijadikan sebagai DNS Master, Berlint akan dijadikan DNS Slave, dan Ed
     auto eth3
     iface eth3 inet static
 	    address 192.204.3.1
-	    netmask 255.255.255.0'
+	    netmask 255.255.255.0
       
 **WISE**
 
