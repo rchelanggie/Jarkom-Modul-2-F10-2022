@@ -7,9 +7,6 @@ Cholid Junoto         5025201038 <br/>
 
 ## Laporan Resmi Modul 2 F10 2022
 
-### Soal 1
-WISE akan dijadikan sebagai DNS Master, Berlint akan dijadikan DNS Slave, dan Eden akan digunakan sebagai Web Server. Terdapat 2 Client yaitu SSS, dan Garden. Semua node terhubung pada router Ostania, sehingga dapat mengakses internet.
-
 **Prefix IP F10**
 
     192.204
@@ -77,6 +74,19 @@ WISE akan dijadikan sebagai DNS Master, Berlint akan dijadikan DNS Slave, dan Ed
 	    address 192.204.2.3
 	    netmask 255.255.255.0
 	    gateway 192.204.2.1
+
+### Soal 1
+WISE akan dijadikan sebagai DNS Master, Berlint akan dijadikan DNS Slave, dan Eden akan digunakan sebagai Web Server. Terdapat 2 Client yaitu SSS, dan Garden. Semua node terhubung pada router Ostania, sehingga dapat mengakses internet.
+
+Pada Ostania
+
+	apt-get update
+	iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 192.204.0.0/16
+
+Pada node-node yang lain ketikkan kode berikut, 
+
+	echo nameserver 192.168.122.1 > /etc/resolv.conf
+	ping google.com
 
 ### Soal 2
 Untuk mempermudah mendapatkan informasi mengenai misi dari Handler, bantulah Loid membuat website utama dengan akses wise.yyy.com dengan alias www.wise.yyy.com pada folder wise.
