@@ -139,11 +139,9 @@ www             IN      CNAME   wise.f10.com.
 `nano /etc/resolv.conf`
 kemudian tulis `nameserver 192.168.2.2`
 namun, pada case ini, kami sudah melakukannya di awal sehingga tidak perlu dilakukan lagi
-- apabila pada client di ketik `ping wise.f10.com`, sudah dapat berjalan
+- apabila pada client di ketik `ping wise.f10.com`, sudah dapat berjalan pada client
 ![image](https://user-images.githubusercontent.com/79054230/198824548-1fd8b077-e900-4eca-b974-7ec5dc82dfb4.png)
 
-
-- pada client 
 ### Soal 3
 Setelah itu ia juga ingin membuat subdomain eden.wise.yyy.com dengan alias www.eden.wise.yyy.com yang diatur DNS-nya di WISE dan mengarah ke Eden.
 
