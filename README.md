@@ -39,33 +39,33 @@ Cholid Junoto         5025201038 <br/>
 
     auto eth0
     iface eth0 inet static
+	    address 192.204.3.2
+	    netmask 255.255.255.0
+	    gateway 192.204.3.1
+
+**SSS**
+
+    auto eth0
+    iface eth0 inet static
 	    address 192.204.1.2
 	    netmask 255.255.255.0
 	    gateway 192.204.1.1
 
-**SSS**
+**Garden**
+
+    auto eth0
+    iface eth0 inet static
+	    address 192.204.1.3
+	    netmask 255.255.255.0
+	    gateway 192.204.1.1
+
+**Berlint**
 
     auto eth0
     iface eth0 inet static
 	    address 192.204.2.2
 	    netmask 255.255.255.0
 	    gateway 192.204.2.1
-
-**Garden**
-
-    auto eth0
-    iface eth0 inet static
-	    address 192.204.2.3
-	    netmask 255.255.255.0
-	    gateway 192.204.2.1
-
-**Berlint**
-
-    auto eth0
-    iface eth0 inet static
-	    address 192.204.3.2
-	    netmask 255.255.255.0
-	    gateway 192.204.3.1
 
 **Eden**
 
@@ -93,6 +93,57 @@ Pada node-node yang lain ketikkan kode berikut, ping google.com untuk mengecek
 ### Soal 2
 Untuk mempermudah mendapatkan informasi mengenai misi dari Handler, bantulah Loid membuat website utama dengan akses wise.yyy.com dengan alias www.wise.yyy.com pada folder wise.
 
+WISE telah terhubung dengan internet. kali ini, kita ingin membuat node WISE sebagai DNS server dengan langkah-langkah berikut
+a. instalasi bind6
+- kita menjalankan command ini pada console di WISE
+`apt-get update`
+- setelah melakukan update, kita menginstall aplikasi bind9 pada WISE dengan command:
+`apt-get install bind9 -y`
+
+b. pembuatan domain
+mengingat kami adalah kelompok f10, maka kita ingin membuat domain wise.f10.com
+- pada wise, diberi command
+`nano /etc/bind/named.conf.local`
+- lalu, diisi configurasi domain wise.f10.com sesuai dengan syntax berikut :
+```
+zone "f10.com" {
+	type master;
+	file "/etc/bind/wise/wise.f10.com";
+};
+```
+- buat folder **wise** di dalam **/etc/bind**
+`mkdir /etc/bind/wise`
+
+- meng-copy file **db.local** pada path **/etc/bind** ke dalam folder **wise** yang baru dibuat. lalu, ubah namanya menjadi **wise.f10.com**
+
+- membuka file **wise.f10.com** dan mengedit menjadi seperti gambar berikut
+`nano /etc/bind/wise/wise.f10.com`
+```
+$TTL    604800
+@       IN      SOA     wise.f10.com. root.wise.f10.com. (
+                                2       ; Serial
+                        604800          ; Refresh
+                        86400           ; Retry
+                        2419200         ; Expire
+                        604800 )        ; Negative Cache TTL
+;
+@               IN      NS      wise.f10.com.
+@               IN      A       192.204.1.2 ; IP Wise
+www             IN      CNAME   wise.f10.com.
+```
+
+- lalu, melakukan restart bind9 dengan command :
+`service bind9 restart`
+
+- setelah itu, kita dapat melakukan setting nameserver pada client. pada client SSS, dan lainnya, kita dapat mengetikkan perintah
+`nano /etc/resolv.conf`
+kemudian tulis `nameserver 192.168.2.2`
+namun, pada case ini, kami sudah melakukannya di awal sehingga tidak perlu dilakukan lagi
+- apabila pada client di ketik `ping wise.f10.com`, sudah dapat berjalan
+![image](https://user-images.githubusercontent.com/79054230/198824548-1fd8b077-e900-4eca-b974-7ec5dc82dfb4.png)
+
+
+- pada client 
 ### Soal 3
 Setelah itu ia juga ingin membuat subdomain eden.wise.yyy.com dengan alias www.eden.wise.yyy.com yang diatur DNS-nya di WISE dan mengarah ke Eden.
 
