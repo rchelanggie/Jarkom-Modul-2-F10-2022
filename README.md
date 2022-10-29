@@ -83,10 +83,12 @@ Pada Ostania
 	apt-get update
 	iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 192.204.0.0/16
 
-Pada node-node yang lain ketikkan kode berikut, 
+Pada node-node yang lain ketikkan kode berikut, ping google.com untuk mengecek
 
 	echo nameserver 192.168.122.1 > /etc/resolv.conf
 	ping google.com
+
+
 
 ### Soal 2
 Untuk mempermudah mendapatkan informasi mengenai misi dari Handler, bantulah Loid membuat website utama dengan akses wise.yyy.com dengan alias www.wise.yyy.com pada folder wise.
