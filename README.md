@@ -39,33 +39,33 @@ Cholid Junoto         5025201038 <br/>
 
     auto eth0
     iface eth0 inet static
-	    address 192.204.3.2
-	    netmask 255.255.255.0
-	    gateway 192.204.3.1
-
-**SSS**
-
-    auto eth0
-    iface eth0 inet static
 	    address 192.204.1.2
 	    netmask 255.255.255.0
 	    gateway 192.204.1.1
 
-**Garden**
-
-    auto eth0
-    iface eth0 inet static
-	    address 192.204.1.3
-	    netmask 255.255.255.0
-	    gateway 192.204.1.1
-
-**Berlint**
+**SSS**
 
     auto eth0
     iface eth0 inet static
 	    address 192.204.2.2
 	    netmask 255.255.255.0
 	    gateway 192.204.2.1
+
+**Garden**
+
+    auto eth0
+    iface eth0 inet static
+	    address 192.204.2.3
+	    netmask 255.255.255.0
+	    gateway 192.204.2.1
+
+**Berlint**
+
+    auto eth0
+    iface eth0 inet static
+	    address 192.204.3.2
+	    netmask 255.255.255.0
+	    gateway 192.204.3.1
 
 **Eden**
 
